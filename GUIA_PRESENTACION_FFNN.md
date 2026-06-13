@@ -4,6 +4,51 @@
 
 ---
 
+## 📦 El dataset: de dónde sale, qué es y cómo lo procesamos
+
+### ¿De dónde viene? (origen)
+Usamos **MNIST** (*Modified National Institute of Standards and Technology*). Es **el dataset más famoso** para empezar en machine learning, el "Hola Mundo" del reconocimiento de imágenes.
+
+- Lo armaron **Yann LeCun, Corinna Cortes y Christopher Burges** en los años 90.
+- Las imágenes originales venían de dos fuentes del **NIST** (la agencia de estándares de EE.UU.): formularios escritos por **empleados del censo** y por **estudiantes de secundaria**.
+- LeCun lo usó en su paper de 1998 (*Gradient-based learning…*, una de nuestras referencias) y desde entonces es el estándar para comparar modelos.
+- **No lo descargamos a mano**: viene incluido en Keras. La línea `keras.datasets.mnist.load_data()` lo baja sola la primera vez.
+
+> *"Es un set público de dígitos escritos a mano por personas reales, creado por LeCun en los 90; lo trae Keras integrado."*
+
+### ¿De qué trata? (contenido)
+Son **imágenes de números escritos a mano del 0 al 9**. El objetivo: que la máquina **lea el número** igual que lo haría una persona.
+
+| Característica | Valor |
+|---|---|
+| Total de imágenes | **70 000** (60 000 entrenamiento + 10 000 test) |
+| Tamaño de cada imagen | **28 × 28 píxeles** (784 en total) |
+| Color | **Escala de grises** (1 canal) |
+| Valor de cada píxel | **0 a 255** (0 = negro, 255 = blanco) |
+| Etiqueta (la respuesta) | Un número del **0 al 9** |
+| Clases | **10** (una por dígito), y está **balanceado** |
+
+> *"Cada dato es una foto de 28×28 de un dígito, en grises, y su etiqueta diciendo qué número es."*
+
+### ¿Cómo lo procesamos? (los 3 pasos antes de entrenar)
+La red **no** puede comer las imágenes tal cual; las preparamos:
+
+1. **Normalizar** → dividimos cada píxel entre 255 para que pase de `0–255` a **`0–1`**.
+   - *Por qué:* las redes aprenden mejor y más rápido con números pequeños (y lo pide la diapositiva: *"Entrada: numérica de rango [0-1]"*).
+
+2. **Aplanar (flatten)** → convertimos cada imagen de **28×28 (un cuadrado)** en **una fila de 784 números (un vector)**.
+   - *Por qué:* un MLP recibe un vector de entrada, no una matriz 2D. (Es como desarmar la cuadrícula y ponerla en una sola línea.)
+
+3. **Separar en 3 grupos** → del total partimos:
+   - **Entrenamiento (54 000)** → para aprender.
+   - **Validación (6 000)** → para vigilar que no haga trampa mientras aprende.
+   - **Test (10 000)** → escondido, solo para la nota final con imágenes nuevas.
+   - *Lo hacemos de forma **estratificada*** = manteniendo la misma proporción de cada dígito en cada grupo.
+
+> **Resumen de una línea:** *"Bajamos píxeles a [0,1], estiramos la imagen a 784 números, y partimos los datos en aprender / vigilar / examinar."*
+
+---
+
 ## 0. El "elevator pitch" (lo que dices al empezar)
 
 > *"Construimos una **red neuronal feed-forward** con TensorFlow/Keras que aprende a **reconocer números escritos a mano** (del 0 al 9). Le mostramos 60 mil imágenes, aprende sola ajustando sus pesos, y al final acierta el **97.9 %** de imágenes que nunca había visto."*
