@@ -1,0 +1,13 @@
+# Dependencias de los notebooks del proyecto (models/Bayesian y models/ARL)
+# Instalar con:  pip install -r requirements.txt
+pandas
+numpy
+scikit-learn
+mlxtend          # solo para los notebooks ARL (apriori, eclat, fp_growth)
+jupyter
+
+# --- Solo si se quieren ejecutar los ejercicios de clase de redes neuronales ---
+# --- (carpeta ejercicios_clase/, NO forma parte de la entrega Bayesian/ARL) ---
+# tensorflow      # requiere además conexión a internet para descargar MNIST / tf_flowers
+# matplotlib
+# seaborn
