@@ -6,8 +6,14 @@ scikit-learn
 mlxtend          # solo para los notebooks ARL (apriori, eclat, fp_growth)
 jupyter
 
-# --- Solo si se quieren ejecutar los ejercicios de clase de redes neuronales ---
-# --- (carpeta ejercicios_clase/, NO forma parte de la entrega Bayesian/ARL) ---
-# tensorflow      # requiere además conexión a internet para descargar MNIST / tf_flowers
+# --- Solo para los ejercicios de clase (carpeta ejercicios_clase/, ---
+# --- NO forman parte de la entrega Bayesian/ARL) ---
+# Redes neuronales (feed_forward_nn_mnist, cnn_flores) — requieren internet:
+# tensorflow      # descarga MNIST / tf_flowers
 # matplotlib
 # seaborn
+# Text Extraction NLP (text_extraction_wikipedia) — requiere internet (Wikipedia):
+# spacy           # + modelo: python -m spacy download en_core_web_sm
+# nltk
+# requests
+# matplotlib
